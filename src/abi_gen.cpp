@@ -3,7 +3,7 @@
 
 
 #define ABI_ASSERT(...)
-namespace mjoyio {
+namespace bchainio {
 
 void abi_generator::set_target_contract(const string& contract, const vector<string>& actions) {
   target_contract = contract;
@@ -112,7 +112,7 @@ bool abi_generator::inspect_type_methods_for_actions(const Decl* decl)
       }
     }
 
-    // Check if current method is listed the MJOYIO_ABI macro
+    // Check if current method is listed the BCAHIN_ABI macro
     bool is_action_from_macro = rec_decl->getName().str() == target_contract && std::find(target_actions.begin(), target_actions.end(), method_name) != target_actions.end();
     //bool is_action_from_macro  = (std::find(target_actions.begin(), target_actions.end(), method_name) != target_actions.end());
      std::cout << "xxxx  " << target_contract<< " " << rec_decl->getName().str() << " " << method_name <<" " <<is_action_from_macro<< std::endl;
@@ -203,7 +203,7 @@ void abi_generator::handle_decl(const Decl* decl)
     return;
   }
 
-  // Check if the current declaration has actions (MJOYIO_ABI, or explicit)
+  // Check if the current declaration has actions (BCAHINIO_ABI, or explicit)
   bool type_has_actions = inspect_type_methods_for_actions(decl);
   if( type_has_actions ) return;
 
@@ -216,7 +216,7 @@ void abi_generator::handle_decl(const Decl* decl)
   string raw_text = raw_comment->getRawText(source_manager);
   regex r;
 
-  // If MJOYIO_ABI macro was found, we will only check if the current Decl
+  // If BCHAIN_ABI macro was found, we will only check if the current Decl
   // is intented to be an ABI table record, otherwise we check for both (action or table)
   if( target_contract.size() )
     r = regex(R"(@abi (table)((?: [a-z0-9]+)*))");

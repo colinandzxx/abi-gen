@@ -5,11 +5,11 @@
 
 using namespace clang;
 using namespace clang::tooling;
-using namespace mjoyio;
+using namespace bchainio;
 using namespace std;
 using json = nlohmann::json;
 
-namespace mjoyio {
+namespace bchainio {
 void to_json(json& j, const action_def& p) {
 	j = json{{"name", p.name}, {"type", p.type}};
 }

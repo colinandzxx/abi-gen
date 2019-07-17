@@ -39,7 +39,7 @@ using namespace std;
 using namespace clang::tooling;
 namespace cl = llvm::cl;
 
-namespace mjoyio {
+namespace bchainio {
 
 
    /**
@@ -240,7 +240,7 @@ namespace mjoyio {
 
                auto* id = token.getIdentifierInfo();
                if( id == nullptr ) return;
-               if( id->getName() != "MJOYIO_ABI" ) return;
+               if( id->getName() != "BCHAINIO_ABI" ) return;
 
                const auto& sm = compiler_instance.getSourceManager();
                auto file_name = sm.getFilename(range.getBegin());
@@ -254,7 +254,7 @@ namespace mjoyio {
                clang::SourceLocation e(clang::Lexer::getLocForEndOfToken(_e, 0, sm, compiler_instance.getLangOpts()));
                auto macrostr = string(sm.getCharacterData(b), sm.getCharacterData(e)-sm.getCharacterData(b));
 
-               regex r(R"(MJOYIO_ABI\s*\(\s*(.+?)\s*,((?:.+?)*)\s*\))");
+               regex r(R"(BCHAINIO_ABI\s*\(\s*(.+?)\s*,((?:.+?)*)\s*\))");
                smatch smatch;
                auto res = regex_search(macrostr, smatch, r);
                //ABI_ASSERT( res );
@@ -310,6 +310,6 @@ namespace mjoyio {
          }
    };
 
-} //ns mjoyio
+} //ns bchainio
 
 #pragma pop_macro("N")

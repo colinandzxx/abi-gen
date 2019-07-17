@@ -9,7 +9,7 @@
 using json = nlohmann::json;
 
 
-namespace mjoyio {
+namespace bchainio {
 
 typedef  std::string type_name;
 typedef  std::string field_name;
@@ -81,14 +81,14 @@ struct error_message {
 struct abi_def {
    abi_def() = default;
    abi_def(const std::vector<type_def>& types, const std::vector<struct_def>& structs, const std::vector<action_def>& actions, const std::vector<error_message>& error_msgs)
-   :version("eosio::abi/1.0")
+   :version("bchain::abi/1.0")
    ,types(types)
    ,structs(structs)
    ,actions(actions)
    ,error_messages(error_msgs)
    {}
 
-   std::string                version = "mjoyio::abi/1.0";
+   std::string                version = "bchainio::abi/1.0";
    std::vector<type_def>      types;
    std::vector<struct_def>    structs;
    std::vector<action_def>    actions;
